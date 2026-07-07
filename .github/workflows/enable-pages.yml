@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  administration: write
-  pages: write
   contents: read
+  pages: write
+  id-token: write
 
 jobs:
   enable:
@@ -34,7 +34,7 @@ jobs:
                 });
                 core.info('Pages updated to workflow source');
               } else {
-                core.setFailed(error.message);
+                core.setFailed(`status=${error.status} ${error.message}`);
                 throw error;
               }
             }
