@@ -1,0 +1,126 @@
+.forecaster-page .page-header {
+  border-bottom: 1px solid var(--line);
+}
+
+.forecaster-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.project-select {
+  width: 200px;
+  min-width: 160px;
+}
+
+.preset-btns {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--line);
+}
+
+.preset-btn {
+  background: var(--bg);
+  border: none;
+  border-right: 1px solid var(--line);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.preset-btn:last-child {
+  border-right: none;
+}
+
+.preset-btn:hover {
+  background: var(--bg-subtle);
+  color: var(--text);
+}
+
+.preset-btn.active {
+  background: var(--bg-subtle);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.action-btn:hover {
+  border-color: var(--text);
+}
+
+.pricing-formula-note {
+  margin: 12px 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.pricing-formula-note strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.blueprint-details {
+  margin-top: 48px;
+  border: 1px solid var(--line);
+}
+
+.blueprint-details summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  list-style: none;
+  background: var(--bg-subtle);
+}
+
+.blueprint-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.blueprint-details .chevron {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.blueprint-details[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.blueprint-details .blueprint-grid {
+  padding: 24px;
+}
+
+@media print {
+  .navbar,
+  .site-footer,
+  .forecaster-actions,
+  .blueprint-details,
+  .inputs-panel {
+    display: none !important;
+  }
+
+  .forecaster-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
