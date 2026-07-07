@@ -1,0 +1,65 @@
+.app-topbar {
+  height: var(--topbar-height);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
+  background: var(--workspace-bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.app-topbar-menu {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 4px;
+  cursor: pointer;
+}
+
+.app-topbar-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+}
+
+.app-topbar-org {
+  color: var(--text-muted);
+}
+
+.app-topbar-sep {
+  color: var(--line-strong);
+}
+
+.app-topbar-page {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.app-topbar-actions {
+  margin-left: auto;
+}
+
+.app-topbar-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+@media (max-width: 900px) {
+  .app-topbar-menu {
+    display: flex;
+  }
+}

@@ -1,0 +1,54 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-shell--marketing {
+  background: var(--bg);
+}
+
+.app-shell--workspace {
+  flex-direction: row;
+  min-height: 100vh;
+  background: var(--workspace-bg);
+}
+
+.app-frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+}
+
+.app-main--workspace {
+  padding: 0 24px 48px;
+  overflow-x: auto;
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .sidebar-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
