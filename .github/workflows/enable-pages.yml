@@ -12,7 +12,7 @@ jobs:
   enable:
     runs-on: ubuntu-latest
     steps:
-      - name: Enable Pages with workflow source
+      - name: Enable legacy Pages from gh-pages
         uses: actions/github-script@v7
         with:
           script: |
@@ -22,7 +22,8 @@ jobs:
               const res = await github.request('POST /repos/{owner}/{repo}/pages', {
                 owner,
                 repo,
-                build_type: 'workflow'
+                build_type: 'legacy',
+                source: { branch: 'gh-pages', path: '/' }
               });
               core.info(`Pages enabled: ${JSON.stringify(res.data)}`);
             } catch (error) {
@@ -30,9 +31,10 @@ jobs:
                 await github.request('PUT /repos/{owner}/{repo}/pages', {
                   owner,
                   repo,
-                  build_type: 'workflow'
+                  build_type: 'legacy',
+                  source: { branch: 'gh-pages', path: '/' }
                 });
-                core.info('Pages updated to workflow source');
+                core.info('Pages updated to legacy gh-pages source');
               } else {
                 core.setFailed(`status=${error.status} ${error.message}`);
                 throw error;
