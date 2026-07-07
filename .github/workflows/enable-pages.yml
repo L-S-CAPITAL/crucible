@@ -1,0 +1,40 @@
+name: Enable GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  administration: write
+  pages: write
+  contents: read
+
+jobs:
+  enable:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Enable Pages with workflow source
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            try {
+              const res = await github.request('POST /repos/{owner}/{repo}/pages', {
+                owner,
+                repo,
+                build_type: 'workflow'
+              });
+              core.info(`Pages enabled: ${JSON.stringify(res.data)}`);
+            } catch (error) {
+              if (error.status === 409) {
+                await github.request('PUT /repos/{owner}/{repo}/pages', {
+                  owner,
+                  repo,
+                  build_type: 'workflow'
+                });
+                core.info('Pages updated to workflow source');
+              } else {
+                core.setFailed(error.message);
+                throw error;
+              }
+            }
