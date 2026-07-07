@@ -1,0 +1,154 @@
+:root {
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --bg: #ffffff;
+  --bg-subtle: #f7f7f7;
+  --bg-inverse: #0a0a0a;
+  --line: #e8e8e8;
+  --line-strong: #d0d0d0;
+
+  --text: #1e2124;
+  --text-secondary: #5c5c5c;
+  --text-muted: #8a8a8a;
+  --text-inverse: #f5f5f5;
+
+  --accent: #c45e1c;
+  --accent-muted: rgba(196, 94, 28, 0.12);
+  --accent-hover: #a34d16;
+
+  --success: #1a7f4b;
+  --danger: #b42318;
+
+  --content-max: 1200px;
+  --page-pad: clamp(20px, 4vw, 48px);
+  --nav-height: 56px;
+  --sidebar-width: 220px;
+  --topbar-height: 48px;
+  --workspace-bg: #f8f8f8;
+
+  --hero-bg: #0a0a0a;
+  --hero-border: #1f1f1f;
+  --hero-text: #f2f2f2;
+  --hero-text-muted: #8a8a8a;
+  --hero-accent: #e07830;
+
+  --sidebar-bg: #0c0c0c;
+  --sidebar-border: #1a1a1a;
+  --sidebar-text: #ececec;
+  --sidebar-muted: #6e6e6e;
+  --sidebar-hover: #161616;
+  --sidebar-active: #1a1a1a;
+
+  color-scheme: light;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.arrow-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.arrow-link--light {
+  color: var(--hero-text);
+  border-bottom-color: var(--hero-text-muted);
+}
+
+.arrow-link--light:hover {
+  color: var(--hero-accent);
+  border-bottom-color: var(--hero-accent);
+}
+
+.arrow-link::before {
+  content: '↳';
+  font-size: 0.9em;
+}
+
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+
+.section-title-lg {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text);
+  margin: 0 0 24px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+}
+
+@media (max-width: 768px) {
+  .matrix-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .matrix-row.header {
+    display: none;
+  }
+}
