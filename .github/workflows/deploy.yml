@@ -24,9 +24,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm install
-      - run: npm run build
+      - name: Build for GitHub Pages
+        run: npm run build
         env:
           PAGES_BASE: /crucible/
+      # HashRouter works without this, but 404.html helps if assets/deep links miss
+      - name: SPA 404 fallback
+        run: cp dist/index.html dist/404.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:pages": "PAGES_BASE=/crucible/ vite build",
+    "preview:pages": "PAGES_BASE=/crucible/ vite preview"
   },
   "dependencies": {
     "lucide-react": "^1.21.0",
