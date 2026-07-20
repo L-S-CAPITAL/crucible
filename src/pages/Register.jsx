@@ -10,7 +10,7 @@ export default function Register() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [plan, setPlan] = useState('starter')
+  const [plan, setPlan] = useState('basic')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
@@ -84,9 +84,9 @@ export default function Register() {
               value={plan}
               onChange={(e) => setPlan(e.target.value)}
             >
-              <option value="starter">Starter — Free</option>
-              <option value="professional">Professional — $490/mo</option>
-              <option value="enterprise">Enterprise — Custom</option>
+              <option value="basic">Basic — $999/mo</option>
+              <option value="pro">Pro — $2,500/mo</option>
+              <option value="enterprise">Enterprise — Enquire</option>
             </select>
           </label>
 

@@ -1,30 +1,30 @@
 export const SUBSCRIPTION_TIERS = [
   {
-    id: 'starter',
-    name: 'Starter',
-    price: 0,
-    period: 'forever',
-    blurb: 'Model copper exposure and run scenario analysis on a single project.',
-    cta: 'Start free',
+    id: 'basic',
+    name: 'Basic',
+    price: 999,
+    period: 'month',
+    blurb: 'Model copper exposure and run scenario analysis across your projects.',
+    cta: 'Start Basic',
     highlight: false,
     features: [
       'Forecaster scenario engine',
-      '1 active project draft',
+      'Portfolio project drafts',
       'Cost-plus fee transparency',
       'LME forward curve docs',
       'Email support',
     ],
   },
   {
-    id: 'professional',
-    name: 'Professional',
-    price: 490,
+    id: 'pro',
+    name: 'Pro',
+    price: 2500,
     period: 'month',
     blurb: 'Portfolio locks, live warehouse inventory pulse, and systematic roll monitoring.',
-    cta: 'Start Professional',
+    cta: 'Start Pro',
     highlight: true,
     features: [
-      'Everything in Starter',
+      'Everything in Basic',
       'Unlimited portfolio projects',
       'Physical inventory live page',
       'Cash/3M, 3M/15M, LME–COMEX basis monitors',
@@ -38,10 +38,10 @@ export const SUBSCRIPTION_TIERS = [
     price: null,
     period: 'custom',
     blurb: 'Multi-entity books, broker integrations, and dedicated ops for large developers.',
-    cta: 'Contact sales',
+    cta: 'Enquire for price',
     highlight: false,
     features: [
-      'Everything in Professional',
+      'Everything in Pro',
       'Multi-workspace / multi-entity',
       'Live LME feed integration',
       'Custom roll-threshold policies',
@@ -52,8 +52,7 @@ export const SUBSCRIPTION_TIERS = [
 ]
 
 export function formatTierPrice(tier) {
-  if (tier.price === 0) return 'Free'
-  if (tier.price == null) return 'Custom'
+  if (tier.price == null) return 'Enquire'
   return new Intl.NumberFormat('en-AU', {
     style: 'currency',
     currency: 'AUD',

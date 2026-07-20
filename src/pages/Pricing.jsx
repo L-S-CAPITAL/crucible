@@ -71,7 +71,7 @@ export default function Pricing() {
       return
     }
     setPlan(tierId)
-    navigate(tierId === 'starter' ? '/forecaster' : '/dashboard')
+    navigate('/dashboard')
   }
 
   return (
@@ -102,8 +102,7 @@ export default function Pricing() {
               <div className="tier-price">
                 <span className="tier-amount">{formatTierPrice(tier)}</span>
                 {tier.period === 'month' && <span className="tier-period">/ month</span>}
-                {tier.period === 'forever' && <span className="tier-period">to start</span>}
-                {tier.period === 'custom' && <span className="tier-period">pricing</span>}
+                {tier.period === 'custom' && <span className="tier-period">for price</span>}
               </div>
               <p className="tier-blurb">{tier.blurb}</p>
               <ul className="tier-features">

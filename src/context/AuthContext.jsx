@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
     setUser(next)
   }, [])
 
-  const register = useCallback(({ name, email, password, plan = 'starter' }) => {
+  const register = useCallback(({ name, email, password, plan = 'basic' }) => {
     const users = loadUsers()
     const normalized = email.trim().toLowerCase()
     if (users.some((u) => u.email === normalized)) {
@@ -75,7 +75,7 @@ export function AuthProvider({ children }) {
           id: `demo-${Date.now()}`,
           name: normalized.split('@')[0] || 'Developer',
           email: normalized,
-          plan: 'professional',
+          plan: 'pro',
         }
         persistUser(session)
         return { ok: true, user: session }
