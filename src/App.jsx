@@ -8,6 +8,10 @@ import LandingPage from './pages/LandingPage'
 import Dashboard from './pages/Dashboard'
 import Forecaster from './pages/Forecaster'
 import Pricing from './pages/Pricing'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Inventory from './pages/Inventory'
+import DocsLmeForwardCurve from './pages/DocsLmeForwardCurve'
 import './App.css'
 
 function MarketingLayout() {
@@ -49,11 +53,15 @@ function App() {
     <Routes>
       <Route element={<MarketingLayout />}>
         <Route index element={<LandingPage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Route>
       <Route element={<AppLayout />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="forecaster" element={<Forecaster />} />
         <Route path="pricing" element={<Pricing />} />
+        <Route path="inventory" element={<Inventory />} />
+        <Route path="docs/lme-forward-curve" element={<DocsLmeForwardCurve />} />
       </Route>
     </Routes>
   )
