@@ -46,30 +46,125 @@ export default function LandingPage() {
           </div>
 
           <div className="landing-montage" aria-hidden="true">
-            <div className="montage-panel">
-              <div className="montage-header">
-                <span>Forecaster</span>
-                <span className="montage-live">LME · Live</span>
+            <div className="gotham-skyline">
+              <svg
+                className="gotham-skyline-svg"
+                viewBox="0 0 640 420"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Black and white Gotham-style city skyline"
+              >
+                <defs>
+                  <linearGradient id="gothamSky" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#0a0a0a" />
+                    <stop offset="45%" stopColor="#1a1a1a" />
+                    <stop offset="100%" stopColor="#2e2e2e" />
+                  </linearGradient>
+                  <linearGradient id="gothamFog" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
+                    <stop offset="55%" stopColor="#c8c8c8" stopOpacity="0.08" />
+                    <stop offset="100%" stopColor="#f0f0f0" stopOpacity="0.22" />
+                  </linearGradient>
+                  <linearGradient id="gothamBeam" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.18" />
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+                  </linearGradient>
+                  <pattern id="gothamWindows" width="10" height="14" patternUnits="userSpaceOnUse">
+                    <rect x="2" y="3" width="3" height="5" fill="#d8d8d8" opacity="0.35" />
+                    <rect x="2" y="10" width="3" height="2" fill="#9a9a9a" opacity="0.2" />
+                  </pattern>
+                  <linearGradient id="gothamGround" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#111" />
+                    <stop offset="100%" stopColor="#000" />
+                  </linearGradient>
+                </defs>
+
+                {/* Sky */}
+                <rect width="640" height="420" fill="url(#gothamSky)" />
+
+                {/* Searchlight beams */}
+                <polygon points="310,40 250,420 290,420" fill="url(#gothamBeam)" />
+                <polygon points="330,40 350,420 400,420" fill="url(#gothamBeam)" opacity="0.7" />
+
+                {/* Distant haze band */}
+                <ellipse cx="320" cy="300" rx="380" ry="70" fill="#fff" opacity="0.04" />
+
+                {/* Far skyline silhouettes */}
+                <g fill="#151515">
+                  <rect x="20" y="230" width="28" height="150" />
+                  <rect x="52" y="200" width="36" height="180" />
+                  <rect x="94" y="245" width="22" height="135" />
+                  <rect x="520" y="220" width="40" height="160" />
+                  <rect x="566" y="195" width="30" height="185" />
+                  <rect x="600" y="240" width="24" height="140" />
+                </g>
+
+                {/* Mid-ground buildings */}
+                <g fill="#1c1c1c" stroke="#3a3a3a" strokeWidth="0.6">
+                  {/* Left block */}
+                  <path d="M40 360 V180 H70 V150 H85 V180 H110 V360 Z" />
+                  <rect x="48" y="190" width="54" height="170" fill="url(#gothamWindows)" stroke="none" opacity="0.9" />
+                  <path d="M120 360 V165 H155 V130 H168 V165 H200 V360 Z" />
+                  <rect x="128" y="175" width="64" height="185" fill="url(#gothamWindows)" stroke="none" />
+
+                  {/* Art-deco tower left-center */}
+                  <path d="M210 360 V120 H235 V90 H250 V70 H265 V90 H280 V120 H305 V360 Z" />
+                  <rect x="218" y="130" width="79" height="230" fill="url(#gothamWindows)" stroke="none" />
+                  <rect x="248" y="55" width="14" height="20" fill="#2a2a2a" stroke="#555" />
+                  <rect x="252" y="40" width="6" height="18" fill="#888" />
+
+                  {/* Central Gotham tower */}
+                  <path d="M320 360 V100 H345 V60 H360 V35 H375 V60 H390 V100 H415 V360 Z" />
+                  <rect x="328" y="108" width="79" height="252" fill="url(#gothamWindows)" stroke="none" />
+                  <path d="M355 35 L367 8 L380 35 Z" fill="#cfcfcf" opacity="0.85" />
+                  <rect x="363" y="8" width="4" height="22" fill="#eee" />
+
+                  {/* Right mid towers */}
+                  <path d="M430 360 V145 H470 V115 H485 V145 H520 V360 Z" />
+                  <rect x="438" y="155" width="74" height="205" fill="url(#gothamWindows)" stroke="none" />
+                  <path d="M535 360 V170 H580 V140 H595 V170 H620 V360 Z" />
+                  <rect x="543" y="180" width="69" height="180" fill="url(#gothamWindows)" stroke="none" />
+                </g>
+
+                {/* Foreground dark massing */}
+                <g fill="#0d0d0d">
+                  <path d="M0 360 L0 300 L80 300 L95 275 L130 275 L145 300 L220 300 L240 285 L300 285 L320 300 L400 300 L420 270 L470 270 L490 300 L560 300 L580 280 L640 280 L640 360 Z" />
+                  <rect x="0" y="340" width="640" height="80" fill="url(#gothamGround)" />
+                </g>
+
+                {/* Street glow line */}
+                <line x1="0" y1="338" x2="640" y2="338" stroke="#fff" strokeOpacity="0.08" strokeWidth="1" />
+                <line x1="0" y1="342" x2="640" y2="342" stroke="#fff" strokeOpacity="0.04" strokeWidth="3" />
+
+                {/* Rain streaks */}
+                <g stroke="#fff" strokeOpacity="0.12" strokeWidth="0.8">
+                  <line x1="40" y1="40" x2="30" y2="90" />
+                  <line x1="90" y1="20" x2="78" y2="85" />
+                  <line x1="160" y1="50" x2="148" y2="110" />
+                  <line x1="230" y1="15" x2="218" y2="80" />
+                  <line x1="410" y1="30" x2="398" y2="95" />
+                  <line x1="480" y1="55" x2="468" y2="115" />
+                  <line x1="550" y1="25" x2="538" y2="90" />
+                  <line x1="600" y1="45" x2="588" y2="100" />
+                </g>
+
+                {/* Fog overlay */}
+                <rect width="640" height="420" fill="url(#gothamFog)" />
+
+                {/* Film grain dots */}
+                <g fill="#fff" opacity="0.06">
+                  <circle cx="70" cy="80" r="0.8" />
+                  <circle cx="140" cy="50" r="0.6" />
+                  <circle cx="280" cy="70" r="0.7" />
+                  <circle cx="450" cy="45" r="0.8" />
+                  <circle cx="520" cy="95" r="0.6" />
+                  <circle cx="590" cy="60" r="0.7" />
+                </g>
+              </svg>
+              <div className="gotham-skyline-caption">
+                <span>Crucible</span>
+                <span>City operations · B&amp;W</span>
               </div>
-              <div className="montage-metrics">
-                <div>
-                  <label>Net Savings</label>
-                  <strong>{formatAUD(scenario.netSavings)}</strong>
-                </div>
-                <div>
-                  <label>Days Saved</label>
-                  <strong>{scenario.actualDelayDays}</strong>
-                </div>
-                <div>
-                  <label>Hedge ROI</label>
-                  <strong>{scenario.roi.toFixed(0)}%</strong>
-                </div>
-              </div>
-              <div className="montage-chart">
-                <div className="montage-bar unhedged" style={{ height: '85%' }} />
-                <div className="montage-bar hedged" style={{ height: '42%' }} />
-              </div>
-              <p className="montage-caption">Hedged vs unhedged — 60 units, {multiplier.toFixed(1)}× copper</p>
             </div>
           </div>
         </div>
