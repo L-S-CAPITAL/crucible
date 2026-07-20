@@ -6,6 +6,8 @@ const PAGE_TITLES = {
   '/dashboard': 'Portfolio',
   '/forecaster': 'Forecaster',
   '/pricing': 'Pricing',
+  '/inventory': 'Physical inventory',
+  '/docs/lme-forward-curve': 'LME forward curve',
 }
 
 export default function AppTopBar({ onMenuToggle }) {

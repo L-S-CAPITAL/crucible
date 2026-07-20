@@ -15,7 +15,14 @@ export default function Footer() {
               <h4>Product</h4>
               <Link to="/forecaster">Forecaster</Link>
               <Link to="/dashboard">Portfolio</Link>
+              <Link to="/inventory">Inventory</Link>
               <Link to="/pricing">Pricing</Link>
+            </div>
+            <div>
+              <h4>Resources</h4>
+              <Link to="/docs/lme-forward-curve">LME forward curve</Link>
+              <Link to="/login">Log in</Link>
+              <Link to="/register">Register</Link>
             </div>
             <div>
               <h4>Company</h4>
@@ -28,6 +35,7 @@ export default function Footer() {
           <span>© 2026 Crucible</span>
           <span className="footer-disclaimer">
             Simulated scenarios only. Not financial advice. Commodity hedging involves basis risk.
+            Research reference adapted from Novaex.
           </span>
         </div>
       </div>
