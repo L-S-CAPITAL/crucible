@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom'
-import { Mail, Info } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Mail, Info, Check } from 'lucide-react'
 import { CRUCIBLE_MARGIN_RATE } from '../utils/calculations'
+import { SUBSCRIPTION_TIERS, formatTierPrice } from '../data/subscriptionTiers'
+import { useAuth } from '../context/AuthContext'
 import './Pricing.css'
 
 const MARGIN_PERCENT = (CRUCIBLE_MARGIN_RATE * 100).toFixed(0)
@@ -30,7 +32,11 @@ const COST_COMPONENTS = [
 
 const FAQ = [
   {
-    q: 'How is pricing calculated?',
+    q: 'How do subscription tiers relate to lock-in fees?',
+    a: 'Platform tiers cover software access (forecaster, portfolio, inventory, docs). Per-project lock-in fees remain cost-plus: operational pass-through × 1.20. Enterprise can negotiate multi-project fee schedules.',
+  },
+  {
+    q: 'How is lock-in pricing calculated?',
     a: `Crucible uses cost-plus pricing. We total operational pass-through costs (hedge execution, margin finance, wholesaler, platform), then add a ${MARGIN_PERCENT}% Crucible margin on that amount. Client price = Operational cost × ${(1 + CRUCIBLE_MARGIN_RATE).toFixed(2)}.`,
   },
   {
@@ -46,24 +52,82 @@ const FAQ = [
     a: 'No. Crucible provides procurement certainty tooling and scenario modelling. Commodity hedging involves basis risk. Consult your financial and legal advisors before entering derivative positions.',
   },
   {
-    q: 'What\'s the minimum project size?',
+    q: "What's the minimum project size?",
     a: 'Designed for mid-rise residential and mixed-use developments in Brisbane — typically 20+ dwellings or 3+ metric tonnes of copper content.',
   },
 ]
 
 export default function Pricing() {
+  const { isAuthenticated, user, setPlan } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSelect = (tierId) => {
+    if (tierId === 'enterprise') {
+      window.location.href = 'mailto:hello@crucible.dev?subject=Enterprise%20plan'
+      return
+    }
+    if (!isAuthenticated) {
+      navigate('/register', { state: { plan: tierId } })
+      return
+    }
+    setPlan(tierId)
+    navigate(tierId === 'starter' ? '/forecaster' : '/dashboard')
+  }
+
   return (
     <div className="page pricing-page animate-fade-in">
       <div className="page-header pricing-header">
         <p className="eyebrow">Pricing</p>
-        <h1 className="page-title">Cost-plus, transparent</h1>
+        <h1 className="page-title">Platform tiers &amp; cost-plus locks</h1>
         <p className="page-subtitle">
-          Operational costs passed through at cost. Crucible earns a {MARGIN_PERCENT}% margin on top of those costs — not on copper notional.
+          Subscribe for workspace access. Lock-in fees stay transparent: operational costs passed through at cost, plus a {MARGIN_PERCENT}% Crucible margin — never on copper notional.
+          {user?.plan ? (
+            <>
+              {' '}You are on <strong>{user.plan}</strong>.
+            </>
+          ) : null}
         </p>
       </div>
 
+      <section className="tiers-section">
+        <h2 className="section-heading">Subscription tiers</h2>
+        <div className="tiers-grid">
+          {SUBSCRIPTION_TIERS.map((tier) => (
+            <div
+              key={tier.id}
+              className={`tier-card glass-card ${tier.highlight ? 'tier-card--featured' : ''}`}
+            >
+              {tier.highlight && <span className="tier-badge">Most popular</span>}
+              <h3>{tier.name}</h3>
+              <div className="tier-price">
+                <span className="tier-amount">{formatTierPrice(tier)}</span>
+                {tier.period === 'month' && <span className="tier-period">/ month</span>}
+                {tier.period === 'forever' && <span className="tier-period">to start</span>}
+                {tier.period === 'custom' && <span className="tier-period">pricing</span>}
+              </div>
+              <p className="tier-blurb">{tier.blurb}</p>
+              <ul className="tier-features">
+                {tier.features.map((f) => (
+                  <li key={f}>
+                    <Check size={14} strokeWidth={2} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <button
+                type="button"
+                className={tier.highlight ? 'btn-primary tier-cta' : 'btn-secondary tier-cta'}
+                onClick={() => handleSelect(tier.id)}
+              >
+                {user?.plan === tier.id ? 'Current plan' : tier.cta}
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <div className="pricing-formula glass-card">
-        <h3>Client lock-in fee</h3>
+        <h3>Client lock-in fee (per project)</h3>
         <p className="formula-expression">Operational pass-through × {(1 + CRUCIBLE_MARGIN_RATE).toFixed(2)}</p>
         <p className="formula-detail">
           Operational pass-through covers LME hedge execution, margin financing, Brisbane wholesaler allocation, and per-project platform ops.
@@ -83,7 +147,7 @@ export default function Pricing() {
       </div>
 
       <div className="cost-breakdown">
-        <h2 className="section-heading">What Goes Into the Price</h2>
+        <h2 className="section-heading">What goes into the lock-in price</h2>
         <div className="cost-cards">
           {COST_COMPONENTS.map((item) => (
             <div key={item.title} className="cost-card glass-card">
@@ -98,6 +162,9 @@ export default function Pricing() {
       <div className="pricing-ctas">
         <Link to="/forecaster" className="pricing-cta primary">
           Model your savings
+        </Link>
+        <Link to="/docs/lme-forward-curve" className="pricing-cta">
+          LME curve docs
         </Link>
         <a href="mailto:hello@crucible.dev" className="pricing-cta">
           <Mail size={14} /> Discuss your project

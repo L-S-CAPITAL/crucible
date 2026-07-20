@@ -133,6 +133,15 @@
   color: var(--sidebar-muted);
 }
 
+.sidebar-footer .as-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  width: 100%;
+  text-align: left;
+}
+
 @media (max-width: 900px) {
   .app-sidebar {
     position: fixed;

@@ -94,6 +94,7 @@ export const PARTNERS = [
 
 export const EXPLORE_LINKS = [
   { title: 'Run the Forecaster', desc: 'Model hedged vs unhedged scenarios for your next feasibility review.', to: '/forecaster', cta: 'Open Forecaster' },
-  { title: 'View Portfolio', desc: 'Track active locks, savings, and market exposure across developments.', to: '/dashboard', cta: 'Open Dashboard' },
-  { title: 'Pricing Model', desc: 'Cost-plus transparency — operational pass-through × 1.20.', to: '/pricing', cta: 'View Pricing' },
+  { title: 'Physical inventory', desc: 'Live LME warehouse stocks, cancelled warrants, and carry shortfall checks.', to: '/inventory', cta: 'Open Inventory' },
+  { title: 'LME forward curve docs', desc: 'Contango, backwardation, carrying charges, and systematic roll standards.', to: '/docs/lme-forward-curve', cta: 'Read Docs' },
+  { title: 'Pricing & plans', desc: 'Starter, Professional, Enterprise — plus cost-plus lock-in transparency.', to: '/pricing', cta: 'View Pricing' },
 ]
