@@ -163,7 +163,7 @@ export default function LandingPage() {
               </svg>
               <div className="gotham-skyline-caption">
                 <span>Crucible</span>
-                <span>City operations · B&amp;W</span>
+                <span>LS CAPITAL</span>
               </div>
             </div>
           </div>
